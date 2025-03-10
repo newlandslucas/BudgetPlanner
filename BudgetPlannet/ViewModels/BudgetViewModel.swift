@@ -8,34 +8,18 @@
 import Foundation
 
 class BudgetViewModel: ObservableObject {
-    @Published var budget: Budget = Budget(value: 0, rooms: [])
-    
-    init() {
-        loadBudget()
+    @Published var budget = Budget(totalAmount: 0)
+
+    func setBudget(amount: Double) {
+        budget.totalAmount = amount
     }
-    
-    func setBudgetValue(_ value: Double) {
-        budget.value = value
-        saveBudget()
-    }
-    
-    func addRoom(_ name: String) {
-        budget.rooms.append(Room(name: name, items: []))
-        saveBudget()
-    }
-    
-    func removeRoom(_ room: Room) {
-        budget.rooms.removeAll { $0.id == room.id }
-        saveBudget()
-    }
-    
-    private func saveBudget() {
-        UserDefaultsManager.shared.saveBudget(budget)
-    }
-    
-    private func loadBudget() {
-        if let savedBudget = UserDefaultsManager.shared.loadBudget() {
-            budget = savedBudget
+
+    func addItemToRoom(roomName: String, item: Item) {
+        if let index = budget.rooms.firstIndex(where: { $0.name == roomName }) {
+            budget.rooms[index].items.append(item)
+        } else {
+            let newRoom = Room(name: roomName, items: [item])
+            budget.rooms.append(newRoom)
         }
     }
 }

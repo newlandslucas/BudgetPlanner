@@ -7,7 +7,13 @@
 
 import Foundation
 
-struct Budget: Codable {
-    var value: Double
-    var rooms: [Room]
+struct Budget: Identifiable {
+    let id = UUID()
+    var totalAmount: Double
+    var rooms: [Room] = []
+    
+    var remainingAmount: Double {
+        let totalSpent = rooms.reduce(0) { $0 + $1.totalCost }
+        return totalAmount - totalSpent
+    }
 }

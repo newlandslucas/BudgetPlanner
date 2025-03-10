@@ -1,5 +1,5 @@
 //
-//  BudgetPlannetApp.swift
+//  BudgetPlannerApp.swift
 //  BudgetPlannet
 //
 //  Created by Lucas Newlands on 10/03/25.
@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct BudgetPlannerApp: App {
-    @StateObject var budgetViewModel = BudgetViewModel()
-    
+    @StateObject private var budgetViewModel = BudgetViewModel()
+
     var body: some Scene {
         WindowGroup {
-            BudgetView()
+            BudgetEntryView()
                 .environmentObject(budgetViewModel)
         }
     }

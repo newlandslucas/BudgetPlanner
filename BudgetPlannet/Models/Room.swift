@@ -7,8 +7,12 @@
 
 import Foundation
 
-struct Room: Codable, Identifiable {
-    let id: UUID = UUID()
+struct Room: Identifiable {
+    let id = UUID()
     var name: String
-    var items: [Item]
+    var items: [Item] = []
+    
+    var totalCost: Double {
+        items.reduce(0) { $0 + $1.cost }
+    }
 }
