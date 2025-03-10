@@ -8,10 +8,13 @@
 import SwiftUI
 
 @main
-struct BudgetPlannetApp: App {
+struct BudgetPlannerApp: App {
+    @StateObject var budgetViewModel = BudgetViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BudgetView()
+                .environmentObject(budgetViewModel)
         }
     }
 }

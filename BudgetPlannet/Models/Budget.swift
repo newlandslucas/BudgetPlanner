@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Budget: Codable {
+    var value: Double
+    var rooms: [Room]
+}

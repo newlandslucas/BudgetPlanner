@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Item: Codable, Identifiable {
+    let id: UUID = UUID()
+    var name: String
+    var price: Double
+}

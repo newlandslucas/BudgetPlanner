@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Room: Codable, Identifiable {
+    let id: UUID = UUID()
+    var name: String
+    var items: [Item]
+}
